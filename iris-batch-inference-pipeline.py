@@ -1,6 +1,7 @@
 import os
+
 import modal
-    
+
 LOCAL=True
 
 if LOCAL == False:
@@ -11,17 +12,18 @@ if LOCAL == False:
        g()
 
 def g():
-    import pandas as pd
+    import datetime
+    from datetime import datetime
+
+    import dataframe_image as dfi
     import hopsworks
     import joblib
-    import datetime
-    from PIL import Image
-    from datetime import datetime
-    import dataframe_image as dfi
-    from sklearn.metrics import confusion_matrix
-    from matplotlib import pyplot
-    import seaborn as sns
+    import pandas as pd
     import requests
+    import seaborn as sns
+    from matplotlib import pyplot
+    from PIL import Image
+    from sklearn.metrics import confusion_matrix
 
     project = hopsworks.login()
     fs = project.get_feature_store()
@@ -33,6 +35,8 @@ def g():
     
     feature_view = fs.get_feature_view(name="iris_modal", version=1)
     batch_data = feature_view.get_batch_data()
+
+    #print('this is batch data: ', batch_data)
 
     y_pred = model.predict(batch_data)
     # print(y_pred)
@@ -97,7 +101,6 @@ def g():
     else:
         print("You need 3 different flower predictions to create the confusion matrix.")
         print("Run the batch inference pipeline more times until you get 3 different iris flower predictions") 
-
 
 if __name__ == "__main__":
     if LOCAL == True :
