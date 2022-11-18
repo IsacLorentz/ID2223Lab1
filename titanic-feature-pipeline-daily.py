@@ -32,7 +32,7 @@ def sample_passenger():
     feature_view = fs.get_feature_view(name="titanic_modal",
                                         version=1)  
     X_train, X_test, y_train, y_test = feature_view.train_test_split(0.005)
-    print('X_train: ', type(X_train))
+    # print('X_train: ', type(X_train))
     df = pd.DataFrame({ "pclass": [np.random.choice(X_train['pclass'].astype('category').cat.codes)],
                        "sex": [np.random.choice(X_train['sex'].astype('category').cat.codes)],
                        "age": [np.random.choice(X_train['age'])],
